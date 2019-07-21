@@ -1,6 +1,6 @@
 import os from 'os';
 import cluster from 'cluster';
-;
+
 const pid = process.pid;
 
 if (cluster.isMaster) {

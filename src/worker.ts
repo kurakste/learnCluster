@@ -8,7 +8,6 @@ app.listen(port, () => console.log(`Example app listening on port ${port}! PID: 
 function payloader(req:Express.Request, res:any) {
   let iter = 3e8;
   while (iter>=0) {
-    //console.log(iter);
     let a = 12;
     let b = Math.sin(a);
     let c =Math.log(a);
