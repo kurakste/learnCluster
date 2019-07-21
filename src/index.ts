@@ -8,9 +8,17 @@ if (cluster.isMaster) {
   console.log(`CPUs: ${cpusCount}`);
   console.log(`Master started Pid: ${pid}`)
   for (let i=0; i<cpusCount-1; i++) {
-    cluster.fork();
+    const worker = cluster.fork();
+    worker.on('exit', ariseWorker);
   }
 } 
+
+function ariseWorker() {
+    console.log(`Worker died! PID: ${this.process.pid}`);
+    const nworker =cluster.fork();
+    console.log(`new worker started: ${nworker.process.pid}`);
+    nworker.on('exit', ariseWorker);
+}
 
 if (cluster.isWorker) {
   require('./worker');

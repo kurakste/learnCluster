@@ -3,7 +3,7 @@ const app = express();
 const port = 3030;
 
 app.get('/', payloader);
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on port ${port}! PID: ${process.pid}`));
 
 function payloader(req, res) {
   let iter = 3e8;
