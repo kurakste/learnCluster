@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = 3030;
 
 app.get('/', payloader);
 app.listen(port, () => console.log(`Example app listening on port ${port}! PID: ${process.pid}`));
 
-function payloader(req, res) {
+function payloader(req:Express.Request, res:any) {
   let iter = 3e8;
   while (iter>=0) {
     //console.log(iter);

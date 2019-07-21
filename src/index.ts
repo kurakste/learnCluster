@@ -1,5 +1,5 @@
-const os = require('os');
-const cluster = require('cluster');
+import os from 'os';
+import cluster from 'cluster';
 ;
 const pid = process.pid;
 
@@ -13,7 +13,7 @@ if (cluster.isMaster) {
   }
 } 
 
-function ariseWorker() {
+function ariseWorker(this:any) {
     console.log(`Worker died! PID: ${this.process.pid}`);
     const nworker =cluster.fork();
     console.log(`new worker started: ${nworker.process.pid}`);
