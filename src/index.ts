@@ -1,8 +1,18 @@
-const express = require('express');
+const os = require('os');
+const cluster = require('cluster');
+;
+const pid = process.pid;
 
-const app = express();
-const port = 3030;
+if (cluster.isMaster) {
+  const cpusCount = os.cpus().length;
+  console.log(`CPUs: ${cpusCount}`);
+  console.log(`Master started Pid: ${pid}`)
+  for (let i=0; i<cpusCount-1; i++) {
+    cluster.fork();
+  }
+} 
 
-app.get('/', (req, res) => res.send('Hellow !!!!\n'));
+if (cluster.isWorker) {
+  require('./worker');
+}
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
